@@ -29,8 +29,8 @@ namespace ConsoleApp1
 {
     class Program
     {
-        private static readonly AzureKeyCredential credentials = new AzureKeyCredential("65624dead020465e88abb10e547cc9ec");
-        private static readonly Uri endpoint = new Uri("https://arshadaitext.cognitiveservices.azure.com/");
+        private static readonly AzureKeyCredential credentials = new AzureKeyCredential("<Key>");
+        private static readonly Uri endpoint = new Uri("<endpoint>");
         static void Main(string[] args)
         {
             var client = new TextAnalyticsClient(endpoint, credentials);
@@ -38,7 +38,7 @@ namespace ConsoleApp1
 
 
             EntityRecognitionExample(client);
-           
+
             Console.Write("Press any key to exit.");
             Console.ReadKey();
         }
@@ -46,14 +46,14 @@ namespace ConsoleApp1
         {
             var response = client.RecognizeEntities("I had a wonderful trip to Seattle last week.");
 
-           Console.WriteLine("Named Entities:");
+            Console.WriteLine("Named Entities:");
             foreach (var entity in response.Value)
             {
                 Console.WriteLine($"\tText: {entity.Text},\tCategory: {entity.Category},\tSub-Category: {entity.SubCategory}");
                 Console.WriteLine($"\t\tScore: {entity.ConfidenceScore:F2}\n");
             }
         }
-   
+
 
     }
 }
