@@ -25,41 +25,32 @@ using System;
 using Azure;
 using System.Globalization;
 using Azure.AI.TextAnalytics;
-namespace ConsoleApp1
-{
-    class Program
-    {
-        private static readonly AzureKeyCredential credentials = new AzureKeyCredential("<Key>");
-        private static readonly Uri endpoint = new Uri("<endpoint>");
-        static void Main(string[] args)
-        {
-            var client = new TextAnalyticsClient(endpoint, credentials);
-            // You will implement these methods later in the quickstart.
+namespace ConsoleApp1 {
+	class Program {
+		private static readonly AzureKeyCredential credentials = new AzureKeyCredential("<Key>");
+		private static readonly Uri endpoint = new Uri("<endpoint>");
+		static void Main(string[] args) {
+			var client = new TextAnalyticsClient(endpoint, credentials);
+			// You will implement these methods later in the quickstart.
 
+			KeyPhraseExtractionExample(client);
 
-            KeyPhraseExtractionExample(client);
+			Console.Write("Press any key to exit.");
+			Console.ReadKey();
+		}
+		static void KeyPhraseExtractionExample(TextAnalyticsClient client) {
+			var response = client.ExtractKeyPhrases("My cat might need to see a veterinarian.");
 
-            Console.Write("Press any key to exit.");
-            Console.ReadKey();
-        }
-      static void KeyPhraseExtractionExample(TextAnalyticsClient client)
-{
-    var response = client.ExtractKeyPhrases("My cat might need to see a veterinarian.");
+			// Printing key phrases
+			Console.WriteLine("Key phrases:");
 
-    // Printing key phrases
-    Console.WriteLine("Key phrases:");
+			foreach(string keyphrase in response.Value) {
+				Console.WriteLine($ "\t{keyphrase}");
+			}
+		}
 
-    foreach (string keyphrase in response.Value)
-    {
-        Console.WriteLine($"\t{keyphrase}");
-    }
+	}
 }
-
-
-    }
-}
-
-
 ```
 ### Output
 
