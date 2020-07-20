@@ -29,8 +29,8 @@ namespace ConsoleApp1
 {
 	class Program
 	{
-		private static readonly AzureKeyCredential credentials = new AzureKeyCredential("a2e5fc6d95354a2a929f28815a51f370");
-		private static readonly Uri endpoint = new Uri("https://textanaarshad.cognitiveservices.azure.com/");
+		private static readonly AzureKeyCredential credentials = new AzureKeyCredential("<key>");
+		private static readonly Uri endpoint = new Uri("<endpoint>");
 		static void Main(string[] args)
 		{
 			var client = new TextAnalyticsClient(endpoint, credentials);
